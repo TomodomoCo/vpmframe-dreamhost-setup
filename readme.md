@@ -12,8 +12,9 @@ This shell script (use with caution! read before you execute!) sets up a Dreamho
 6.  Download dreamhost.sh from this directory
 7.  Upload dreamhost.sh to your account with `scp dreamhost.sh username@server.dreamhost.com:~`
 8.  SSH into your account: `ssh username@server.dreamhost.com`
-9.  Add the executable bit to the dreamhost.sh script: `chmod +x dreamhost.sh`
-10. Run the dreamhost.sh script, passing the domain to set up as your first parameter: `./dreamhost.sh domain.com`
+9.  Add the executable bit to the dreamhost.sh script: `chmod +x ~/dreamhost.sh`
+10. Run the dreamhost.sh script, passing domains to set up as your parameters: `~/dreamhost.sh domain.com staging.domain.com`
+11. Once you're satisfied with everything: `rm ~/dreamhost.sh`
 
 ## License
 
