@@ -1,5 +1,8 @@
 #!/usr/bin/env bash
 
+# Example:
+# $ ./dreamhost.sh domain.com staging.domain.com
+
 # create phprc file
 mkdir -p ~/.php/5.6
 echo "extension = phar.so
@@ -29,15 +32,20 @@ source ~/.bash_profile
 mkdir -p ~/bin
 cd ~/bin && curl -s https://getcomposer.org/installer | php
 
-# add the config directory
-mkdir -p ~/$1/shared/config
+# loop through domains
+for domain in "$@" do
 
-# move the acme challenge directory
-mv ~/$1/current/public/.well-known ~/$1/shared/config
+	# add the config directory
+	mkdir -p ~/$domain/shared/config
 
-# remove current directory (it’s in the way)
-rm -r ~/$1/current
-touch ~/$1/current
+	# move the acme challenge directory
+	mv ~/$domain/current/public/.well-known ~/$domain/shared/config
+
+	# remove current directory (it’s in the way)
+	rm -r ~/$domain/current
+	touch ~/$domain/current
+
+done
 
 # reload bash config
 source ~/.bash_profile
