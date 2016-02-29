@@ -39,7 +39,7 @@ for domain in "$@"; do
 	mkdir -p ~/"$domain"/shared/config
 
 	# move the acme challenge directory
-	mv ~/"$domain"current/public/.well-known ~/"$domain"/shared/config
+	mv ~/"$domain"/current/public/.well-known ~/"$domain"/shared/config
 
 	# remove current directory (it’s in the way)
 	rm -r ~/"$domain"/current
