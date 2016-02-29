@@ -18,7 +18,7 @@ echo "shopt -s expand_aliases
 export PATH=/usr/local/php56/bin:\\$PATH
 alias composer=\\$HOME/bin/composer.phar
 alias v=vim
-alias ll=ls -la" >> ~/.profile
+alias ll=\"ls -la\"" >> ~/.profile
 
 echo "umask 002" >> ~/.bashrc
 
@@ -33,17 +33,17 @@ mkdir -p ~/bin
 cd ~/bin && curl -s https://getcomposer.org/installer | php
 
 # loop through domains
-for domain in "$@" do
+for domain in "$@"; do
 
 	# add the config directory
-	mkdir -p ~/$domain/shared/config
+	mkdir -p ~/"$domain"/shared/config
 
 	# move the acme challenge directory
-	mv ~/$domain/current/public/.well-known ~/$domain/shared/config
+	mv ~/"$domain"current/public/.well-known ~/"$domain"/shared/config
 
 	# remove current directory (it’s in the way)
-	rm -r ~/$domain/current
-	touch ~/$domain/current
+	rm -r ~/"$domain"/current
+	touch ~/"$domain"/current
 
 done
 
