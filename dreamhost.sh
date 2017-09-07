@@ -10,7 +10,7 @@ echo -e "\e[1;31mInstalling user profile files\e[0m"
 
 # Add our phprc file
 mkdir -p ~/.php/7.0
-mv ./src/phprc ~/.php/7.0/
+cp ./src/phprc ~/.php/7.0/
 
 # Remove old versions of env files
 rm ~/.profile
@@ -18,9 +18,9 @@ rm ~/.bashrc
 rm ~/.bash_profile
 
 # Move in our new env files
-mv ./src/profile ~/.profile
-mv ./src/bashrc ~/.bashrc
-mv ./src/bash_profile ~/.bash_profile
+cp ./src/profile ~/.profile
+cp ./src/bashrc ~/.bashrc
+cp ./src/bash_profile ~/.bash_profile
 
 # Reload bash profile
 source ~/.bash_profile
