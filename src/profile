@@ -1,5 +1,5 @@
 shopt -s expand_aliases
-export PATH=/usr/local/php56/bin:$PATH
+export PATH=/usr/local/php70/bin:$PATH
 alias composer=$HOME/bin/composer.phar
 alias v=vim
 alias ll="ls -la"
