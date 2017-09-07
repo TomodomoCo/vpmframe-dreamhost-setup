@@ -3,6 +3,9 @@
 # Example:
 # $ ./dreamhost.sh domain.com staging.domain.com
 
+# Moving into position
+cd "${0%/*}"
+
 echo -e "\e[1;31mInstalling user profile files\e[0m"
 
 # Add our phprc file
@@ -28,9 +31,12 @@ echo -e "\e[1;31mPreparing to install Composer\e[0m"
 mkdir -p ~/bin
 cd ~/bin && curl -s https://getcomposer.org/installer | php
 
-echo -e "\e[1;31mSetting up site directories\e[0m"
+# Back to home
+cd "${0%/*}"
 
 # Loop through domains
+echo -e "\e[1;31mSetting up domain directories\e[0m"
+
 for domain in "$@"; do
 
 	# add the config directory
