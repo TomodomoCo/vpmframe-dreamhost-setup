@@ -1,0 +1,6 @@
+shopt -s expand_aliases
+export PATH=/usr/local/php56/bin:\\$PATH
+alias composer=\\$HOME/bin/composer.phar
+alias v=vim
+alias ll="ls -la"
+alias l="ls -lah"

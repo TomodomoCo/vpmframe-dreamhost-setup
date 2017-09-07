@@ -3,43 +3,38 @@
 # Example:
 # $ ./dreamhost.sh domain.com staging.domain.com
 
-# create phprc file
-mkdir -p ~/.php/5.6
-echo "extension = phar.so
-suhosin.executor.include.whitelist = phar" >> ~/.php/5.6/phprc
+echo -e "\e[1;31mInstalling user profile files\e[0m"
 
-# remove old versions of env files
+# Add our phprc file
+mkdir -p ~/.php/7.0
+mv ./src/phprc ~/php/7.0/
+
+# Remove old versions of env files
 rm ~/.profile
 rm ~/.bash_profile
 rm ~/.bashrc
 
-# create new versions of env files
-echo "shopt -s expand_aliases
-export PATH=/usr/local/php56/bin:\\$PATH
-alias composer=\\$HOME/bin/composer.phar
-alias v=vim
-alias ll=\"ls -la\"" >> ~/.profile
+# Move in our new env files
+mv ./src/profile ~/.profile
+mv ./src/bashrc ~/.bashrc
+mv ./src/bash_profile ~/.bash_profile
 
-echo "umask 002" >> ~/.bashrc
-
-echo "source ~/.profile
-source ~/.bashrc" >> ~/.bash_profile
-
-# reload bash config
+# Reload bash profile
 source ~/.bash_profile
 
-# install composer
+# Install composer
+echo -e "\e[1;31mPreparing to install Composer\e[0m"
+
 mkdir -p ~/bin
 cd ~/bin && curl -s https://getcomposer.org/installer | php
 
-# loop through domains
+echo -e "\e[1;31mSetting up site directories\e[0m"
+
+# Loop through domains
 for domain in "$@"; do
 
 	# add the config directory
 	mkdir -p ~/"$domain"/shared/config
-
-	# move the acme challenge directory
-	mv ~/"$domain"/current/public/.well-known ~/"$domain"/shared/config
 
 	# remove current directory (it’s in the way)
 	rm -r ~/"$domain"/current
